@@ -58,12 +58,16 @@ jobs:
           )
           
           decoded_content=$(echo "$CONTENT" | base64 --decode)
+          echo "${decoded_content}"
           for ((i = 0; i < ${#search_replace_pairs[@]}; i += 2)); do
             search=${search_replace_pairs[i]}
             replace=${search_replace_pairs[i+1]}
             decoded_content=$(echo "$decoded_content" | sed "s/${search}/${replace}/g")
           done
-          echo "CONTENT_DECODED=${decoded_content}" >> $GITHUB_ENV
+          
+          echo "CONTENT_DECODED<<EOF" >> $GITHUB_ENV
+          $decoded_content
+          EOF
 
       - name: Notify Discord
         if: ${{ env.COMMENT_AUTHOR && env.PR_URL && env.AUTHOR_URL && env.CONTENT_DECODED && env.COMMENT_BODY }}
