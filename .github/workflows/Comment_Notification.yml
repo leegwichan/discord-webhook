@@ -48,13 +48,13 @@ jobs:
           echo "TITLE=Issue" >> $GITHUB_ENV
 
       - name : Set Content
-        if: ${{ env.COMMENT_BODY }}
+        if: ${{ env.CONTENT }}
         env:
           CONTENT: ${{ env.CONTENT }}
         run: |
           declare -a search_replace_pairs=(
             "@leegwichan" "<@gwichanlee>"
-            "@BE" "<@&BE>"
+            "@be" "<@&BE>"
           )
           
           decoded_content=$(echo "$CONTENT" | base64 --decode)
