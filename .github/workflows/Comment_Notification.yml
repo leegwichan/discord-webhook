@@ -63,7 +63,7 @@ jobs:
             replace=${search_replace_pairs[i+1]}
             content=$(echo "$content" | sed "s/${search}/${replace}/g")
           done
-          echo "DISCORD_CONTENT=$(echo '$content' | base64 -w 0)" >> $GITHUB_ENV
+          echo "DISCORD_CONTENT=$(echo $content | base64 -w 0)" >> $GITHUB_ENV
 
       - name: Notify Discord
         if: ${{ env.COMMENT_AUTHOR && env.PR_URL && env.AUTHOR_URL && env.DISCORD_CONTENT && env.COMMENT_BODY }}
