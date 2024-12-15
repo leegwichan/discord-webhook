@@ -49,6 +49,8 @@ jobs:
 
       - name : Set Content
         if: ${{ env.COMMENT_BODY }}
+        env:
+          CONTENT: ${{ env.CONTENT }}
         run: |
           declare -a search_replace_pairs=(
             "@leegwichan" "<@gwichanlee>"
