@@ -52,16 +52,23 @@ jobs:
         env:
           CONTENT: ${{ env.CONTENT }}
         run: |
-          declare -a search_replace_pairs=(
-            "@leegwichan" "<@273420257975074826>"
-            "@be" "<@&1317859174964658267>"
+          declare -a user_github_discord_pair=(
+            "leegwichan" "273420257975074826"
+          )
+          declare -a role_github_discord_pair=(
+            "be" "1317859174964658267"
           )
           
           content=$(echo "$CONTENT" | base64 --decode)
-          for ((i = 0; i < ${#search_replace_pairs[@]}; i += 2)); do
-            search=${search_replace_pairs[i]}
-            replace=$(echo "${search_replace_pairs[i+1]}" | sed 's|&|\\&|g')
-            content=$(echo "$content" | sed "s|${search}|${replace}|g")
+          for ((i = 0; i < ${#user_github_discord_pair[@]}; i += 2)); do
+            search=${user_github_discord_pair[i]}
+            replace=${user_github_discord_pair[i+1]}
+            content=$(echo "$content" | sed "s|@${search}|<@${replace}>|g")
+          done
+          for ((i = 0; i < ${#role_github_discord_pair[@]}; i += 2)); do
+            search=${role_github_discord_pair[i]}
+            replace=${role_github_discord_pair[i+1]}
+            content=$(echo "$content" | sed "s|@${search}|<@\&${replace}>|g")
           done
           echo "DISCORD_CONTENT=$(echo $content | base64 -w 0)" >> $GITHUB_ENV
 
