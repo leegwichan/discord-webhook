@@ -54,14 +54,14 @@ jobs:
         run: |
           declare -a search_replace_pairs=(
             "@leegwichan" "<@273420257975074826>"
-            "@backend" "<@&1317859174964658267>"
+            "@be" "<@&1317859174964658267>"
           )
           
           content=$(echo "$CONTENT" | base64 --decode)
           for ((i = 0; i < ${#search_replace_pairs[@]}; i += 2)); do
             search=${search_replace_pairs[i]}
             replace=${search_replace_pairs[i+1]}
-            content=$(echo "$content" | sed "s/${search}/${replace}/g")
+            content=$(echo "$content" | sed "s|${search}|${replace}|g")
           done
           echo "DISCORD_CONTENT=$(echo $content | base64 -w 0)" >> $GITHUB_ENV
 
