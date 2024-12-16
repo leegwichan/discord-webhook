@@ -52,14 +52,10 @@ jobs:
         env:
           CONTENT: ${{ env.CONTENT }}
         run: |
-          declare -a user_github_discord_pair=(
-            "leegwichan" "273420257975074826"
-          )
-          declare -a role_github_discord_pair=(
-            "be" "1317859174964658267"
-          )
-          
+          IFS=',' read -r -a user_github_discord_pair <<< "${{ secrets.PAIR_GITHUB_DISCORD_USER }}"
+          IFS=',' read -r -a role_github_discord_pair <<< "${{ secrets.PAIR_GITHUB_DISCORD_ROLE }}"
           content=$(echo "$CONTENT" | base64 --decode)
+          
           for ((i = 0; i < ${#user_github_discord_pair[@]}; i += 2)); do
             search=${user_github_discord_pair[i]}
             replace=${user_github_discord_pair[i+1]}
