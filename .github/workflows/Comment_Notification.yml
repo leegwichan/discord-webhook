@@ -60,7 +60,7 @@ jobs:
           content=$(echo "$CONTENT" | base64 --decode)
           for ((i = 0; i < ${#search_replace_pairs[@]}; i += 2)); do
             search=${search_replace_pairs[i]}
-            replace=${search_replace_pairs[i+1]}
+            replace=$(echo "${search_replace_pairs[i+1]}" | sed 's|&|\&|g')
             content=$(echo "$content" | sed "s|${search}|${replace}|g")
           done
           echo "DISCORD_CONTENT=$(echo $content | base64 -w 0)" >> $GITHUB_ENV
