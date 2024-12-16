@@ -53,8 +53,8 @@ jobs:
           CONTENT: ${{ env.CONTENT }}
         run: |
           declare -a search_replace_pairs=(
-            "@leegwichan" "<@gwichanlee>"
-            "@be" "<@&BE>"
+            "@leegwichan" "<@273420257975074826>"
+            "@be" "<@&1317859174964658267>"
           )
           
           content=$(echo "$CONTENT" | base64 --decode)
