@@ -86,8 +86,6 @@ jobs:
             JSON_PAYLOAD=$(jq -n \
               --arg content "$CONTENT_DECODED" \
               --arg description "$COMMENT_BODY" \
-              # --arg avatar_url "$AVATAR_URL" \
-              # --arg username "$USERNAME" \
               --arg title "$TITLE" \
               --arg url "$PR_URL" \
               --arg author_url "$AUTHOR_URL" \
