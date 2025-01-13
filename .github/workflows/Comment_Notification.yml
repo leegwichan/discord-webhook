@@ -45,8 +45,8 @@ jobs:
           echo "POST_URL=${{ github.event.issue.html_url }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR=${{ github.event.comment.user.login }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR_AVATAR=${{ github.event.comment.user.avatar_url }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR=${{ github.event.issue.comment.user.login }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR_AVATAR=${{ github.event.issue.comment.user.avatar_url }}" >> $GITHUB_ENV
+          echo "POST_AUTHOR=${{ github.event.issue.user.login }}" >> $GITHUB_ENV
+          echo "POST_AUTHOR_AVATAR=${{ github.event.issue.user.avatar_url }}" >> $GITHUB_ENV
           echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
           echo "CONTENT=$(echo '${{ github.event.comment.body }}' | base64 -w 0)" >> $GITHUB_ENV
           echo "POST_TYPE=Issue" >> $GITHUB_ENV
