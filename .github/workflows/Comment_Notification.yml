@@ -42,14 +42,7 @@ jobs:
       - name: Debug PR Review Comment
         if: ${{ github.event.review }}
         run: |
-          echo "POST_URL=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
-          echo "COMMENT_AUTHOR=${{ github.event.review.user.login }}" >> $GITHUB_ENV
-          echo "COMMENT_AUTHOR_AVATAR=${{ github.event.review.user.avatar_url }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR=${{ github.event.review.pull_request.user.login }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR_AVATAR=${{ github.event.review.pull_request.user.avatar_url }}" >> $GITHUB_ENV
-          echo "TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
-          echo "CONTENT=$(echo '${{ github.event.review.body }}' | base64 -w 0)" >> $GITHUB_ENV
-          echo "POST_TYPE=Pull Request" >> $GITHUB_ENV
+          echo "It is PR Review Comment"
 
       - name: Set Environment Variables for Issue
         if: ${{ !github.event.issue.pull_request && contains(github.event.comment.body, '/noti') }}
