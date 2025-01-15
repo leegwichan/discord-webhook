@@ -14,6 +14,7 @@ jobs:
       - name: Set Environment Variables
         run: |
           echo "WEB_HOOK=${{ secrets.DISCORD_WEB_HOOK }}" >> $GITHUB_ENV
+          echo "${{ toJson(github.event) }}"
 
       - name: Set Environment Variables for PR Comments
         if: ${{ github.event.pull_request && contains(github.event.review.body, '/noti') }}
