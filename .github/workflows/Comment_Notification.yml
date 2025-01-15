@@ -21,11 +21,14 @@ jobs:
           echo "POST_URL=${{ github.event.issue.pull_request.html_url }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR=${{ github.event.comment.user.login }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR_AVATAR=${{ github.event.comment.user.avatar_url }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR=${{ toJson(github) }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR_AVATAR=${{ toJson(github) }}" >> $GITHUB_ENV
           echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
           echo "CONTENT=$(echo '${{ github.event.comment.body }}' | base64 -w 0)" >> $GITHUB_ENV
           echo "POST_TYPE=Pull Request" >> $GITHUB_ENV
+          
+          PR_DATA=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+                  "${{ github.event.issue.pull_request.url }}")
+          echo "POST_AUTHOR=$(echo "$PR_DATA" | jq -r '.user.login')" >> $GITHUB_ENV
+          echo "POST_AUTHOR_AVATAR=$(echo "$PR_DATA" | jq -r '.user.avatar_url')" >> $GITHUB_ENV
 
       - name: Set Environment Variables for PR Review Comment
         if: ${{ contains(github.event.review.body, '/noti') }}
@@ -33,11 +36,14 @@ jobs:
           echo "POST_URL=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR=${{ github.event.review.user.login }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR_AVATAR=${{ github.event.review.user.avatar_url }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR=${{ github.event.review.pull_request.user.login }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR_AVATAR=${{ github.event.review.pull_request.user.avatar_url }}" >> $GITHUB_ENV
           echo "TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
           echo "CONTENT=$(echo '${{ github.event.review.body }}' | base64 -w 0)" >> $GITHUB_ENV
           echo "POST_TYPE=Pull Request" >> $GITHUB_ENV
+          
+          PR_DATA=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+                  "${{ github.event.pull_request.url }}")
+          echo "POST_AUTHOR=$(echo "$PR_DATA" | jq -r '.user.login')" >> $GITHUB_ENV
+          echo "POST_AUTHOR_AVATAR=$(echo "$PR_DATA" | jq -r '.user.avatar_url')" >> $GITHUB_ENV
 
       - name: Debug PR Review Comment
         if: ${{ github.event.review }}
