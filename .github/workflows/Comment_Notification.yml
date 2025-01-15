@@ -16,8 +16,20 @@ jobs:
           echo "WEB_HOOK=${{ secrets.DISCORD_WEB_HOOK }}" >> $GITHUB_ENV
           echo "${{ toJson(github.event) }}"
 
+      - name: Set Environment Variables for Issue
+        if: ${{ !github.event.issue.pull_request && contains(github.event.comment.body, '/noti') }}
+        run: |
+          echo "POST_URL=${{ github.event.issue.html_url }}" >> $GITHUB_ENV
+          echo "COMMENT_AUTHOR=${{ github.event.comment.user.login }}" >> $GITHUB_ENV
+          echo "COMMENT_AUTHOR_AVATAR=${{ github.event.comment.user.avatar_url }}" >> $GITHUB_ENV
+          echo "POST_AUTHOR=${{ github.event.issue.user.login }}" >> $GITHUB_ENV
+          echo "POST_AUTHOR_AVATAR=${{ github.event.issue.user.avatar_url }}" >> $GITHUB_ENV
+          echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
+          echo "CONTENT=$(echo '${{ github.event.comment.body }}' | base64 -w 0)" >> $GITHUB_ENV
+          echo "POST_TYPE=Issue" >> $GITHUB_ENV
+
       - name: Set Environment Variables for PR Comments
-        if: ${{ github.event.pull_request && contains(github.event.review.body, '/noti') }}
+        if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/noti') }}
         run: |
           echo "POST_URL=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR=${{ github.event.comment.user.login }}" >> $GITHUB_ENV
@@ -30,18 +42,6 @@ jobs:
                   "${{ github.event.issue.pull_request.url }}")
           echo "POST_AUTHOR=$(echo "$PR_DATA" | jq -r '.user.login')" >> $GITHUB_ENV
           echo "POST_AUTHOR_AVATAR=$(echo "$PR_DATA" | jq -r '.user.avatar_url')" >> $GITHUB_ENV
-
-      - name: Set Environment Variables for Issue
-        if: ${{ !github.event.issue && contains(github.event.comment.body, '/noti') }}
-        run: |
-          echo "POST_URL=${{ github.event.issue.html_url }}" >> $GITHUB_ENV
-          echo "COMMENT_AUTHOR=${{ github.event.comment.user.login }}" >> $GITHUB_ENV
-          echo "COMMENT_AUTHOR_AVATAR=${{ github.event.comment.user.avatar_url }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR=${{ github.event.issue.user.login }}" >> $GITHUB_ENV
-          echo "POST_AUTHOR_AVATAR=${{ github.event.issue.user.avatar_url }}" >> $GITHUB_ENV
-          echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
-          echo "CONTENT=$(echo '${{ github.event.comment.body }}' | base64 -w 0)" >> $GITHUB_ENV
-          echo "POST_TYPE=Issue" >> $GITHUB_ENV
 
       - name: Set Discord Content
         if: ${{ env.CONTENT }}
