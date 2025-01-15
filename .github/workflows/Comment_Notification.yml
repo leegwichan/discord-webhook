@@ -14,12 +14,11 @@ jobs:
       - name: Set Environment Variables
         run: |
           echo "WEB_HOOK=${{ secrets.DISCORD_WEB_HOOK }}" >> $GITHUB_ENV
-          echo "${{ toJson(github) }}"
 
       - name: Set Environment Variables for PR Comments
-        if: ${{ github.event.issue.pull_request && contains(github.event.review.body, '/noti') }}
+        if: ${{ github.event.pull_request && contains(github.event.review.body, '/noti') }}
         run: |
-          echo "POST_URL=${{ github.event.issue.pull_request.html_url }}" >> $GITHUB_ENV
+          echo "POST_URL=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR=${{ github.event.comment.user.login }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR_AVATAR=${{ github.event.comment.user.avatar_url }}" >> $GITHUB_ENV
           echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
@@ -32,7 +31,7 @@ jobs:
           echo "POST_AUTHOR_AVATAR=$(echo "$PR_DATA" | jq -r '.user.avatar_url')" >> $GITHUB_ENV
 
       - name: Set Environment Variables for Issue
-        if: ${{ !github.event.issue.pull_request && contains(github.event.comment.body, '/noti') }}
+        if: ${{ !github.event.issue && contains(github.event.comment.body, '/noti') }}
         run: |
           echo "POST_URL=${{ github.event.issue.html_url }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR=${{ github.event.comment.user.login }}" >> $GITHUB_ENV
