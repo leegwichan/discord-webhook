@@ -32,7 +32,7 @@ jobs:
         if: ${{ github.event.pull_request && contains(github.event.review.body, '/noti') }}
         run: |
           echo "CONTENT=$(echo '${{ github.event.review.body }}' | base64 -w 0)" >> $GITHUB_ENV
-          echo "POST_URL=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
+          echo "POST_URL=${{ github.event.pull_request._links.html }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR=${{ github.event.review.user.login }}" >> $GITHUB_ENV
           echo "COMMENT_AUTHOR_AVATAR=${{ github.event.review.user.avatar_url }}" >> $GITHUB_ENV
           echo "POST_AUTHOR=${{ github.event.pull_request.base.user.login }}" >> $GITHUB_ENV
