@@ -50,7 +50,7 @@ jobs:
           echo "POST_AUTHOR=${{ github.event.issue.user.login }}" >> $GITHUB_ENV
           echo "POST_AUTHOR_AVATAR=${{ github.event.issue.user.avatar_url }}" >> $GITHUB_ENV
           echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
-          echo "POST_TYPE=Issue" >> $GITHUB_ENV
+          echo "POST_TYPE=Pull Request" >> $GITHUB_ENV
 
       - name: Set Discord Content
         if: ${{ env.CONTENT }}
