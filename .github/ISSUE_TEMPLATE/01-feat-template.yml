@@ -23,10 +23,10 @@ body:
     validations:
       required: true
 
-  - type: date
+  - type: textarea
     id: dueDate
     attributes:
       label: '📅 마감일'
-      description: '이슈의 마감일을 선택해주세요'
+      description: '마감일을 입력해주세요'
     validations:
       required: false
