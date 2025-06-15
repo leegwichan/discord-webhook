@@ -1,0 +1,32 @@
+name: "Chore Template"
+description: 기타 이슈 템플릿
+labels: [ chore ]
+title: '[Chore] '
+body:
+  - type: input
+    id: parentKey
+    attributes:
+      label: '🏷️ 상위 작업 (Ticket Number)'
+      description: '상위 작업의 Ticket Number를 기입해주세요'
+      placeholder: 'PRODUCT-000'
+    validations:
+      required: false
+
+  - type: textarea
+    id: details
+    attributes:
+      label: '🚀 구현 내용'
+      description: '이슈에 대해서 자세히 설명해주세요'
+      value: |
+        -
+        -
+    validations:
+      required: true
+
+  - type: date
+    id: dueDate
+    attributes:
+      label: '📅 마감일'
+      description: '이슈의 마감일을 선택해주세요'
+    validations:
+      required: false
