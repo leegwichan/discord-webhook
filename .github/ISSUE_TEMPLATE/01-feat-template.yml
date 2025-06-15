@@ -1,7 +1,7 @@
-name: "Chore Template"
+name: "Feat Template"
 description: 기타 이슈 템플릿
-labels: [ chore ]
-title: '[Chore] '
+labels: [ feat ]
+title: '[Feat] '
 body:
   - type: input
     id: parentKey
