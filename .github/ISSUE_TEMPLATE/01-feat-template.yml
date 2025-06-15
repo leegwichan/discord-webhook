@@ -23,7 +23,7 @@ body:
     validations:
       required: true
 
-  - type: textarea
+  - type: input
     id: dueDate
     attributes:
       label: '📅 마감일'
