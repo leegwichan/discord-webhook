@@ -1,7 +1,7 @@
-name: "Feat Template"
-description: 기타 이슈 템플릿
-labels: [ feat ]
-title: '[Feat] '
+name: "Infra Template"
+description: 인프라 구성 이슈 템플릿
+labels: [ infra ]
+title: '[Infra] '
 body:
   - type: input
     id: parentKey

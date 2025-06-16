@@ -1,7 +1,7 @@
-name: "Chore Template"
-description: 기타 이슈 템플릿
-labels: [ chore ]
-title: '[Chore] '
+name: "Pref Template"
+description: 성능 개선 이슈 템플릿
+labels: [ pref ]
+title: '[Rref] '
 body:
   - type: input
     id: parentKey
@@ -10,7 +10,7 @@ body:
       description: '상위 작업의 Ticket Number를 기입해주세요'
       placeholder: 'PRODUCT-000'
     validations:
-      required: false
+      required: true
 
   - type: textarea
     id: details
@@ -19,7 +19,6 @@ body:
       description: '이슈에 대해서 자세히 설명해주세요'
       value: |
         -
-        -
     validations:
       required: true
 
@@ -27,6 +26,7 @@ body:
     id: dueDate
     attributes:
       label: '📅 마감일'
-      description: '마감일을 입력해주세요'
+      description: '마감일을 입력해주세요 (YY.MM.DD)'
+      placeholder: ''
     validations:
       required: false

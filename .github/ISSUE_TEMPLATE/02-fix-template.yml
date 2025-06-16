@@ -1,7 +1,7 @@
-name: "Feat Template"
-description: 기타 이슈 템플릿
-labels: [ feat ]
-title: '[Feat] '
+name: "Fix Template"
+description: 수정 이슈 템플릿
+labels: [ fix ]
+title: '[Fix] '
 body:
   - type: input
     id: parentKey

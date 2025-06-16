@@ -1,7 +1,7 @@
-name: "Feat Template"
-description: 기타 이슈 템플릿
-labels: [ feat ]
-title: '[Feat] '
+name: "Style Template"
+description: 코드 포멧팅 이슈 템플릿
+labels: [ style ]
+title: '[Style] '
 body:
   - type: input
     id: parentKey
