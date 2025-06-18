@@ -1,7 +1,7 @@
 name: "Infra Template"
-description: 인프라 구성 이슈 템플릿
-labels: [ infra ]
-title: '[Infra] '
+description: 기타 이슈 템플릿
+labels: [ chore ]
+title: '[Chore] '
 body:
   - type: input
     id: parentKey
@@ -27,6 +27,5 @@ body:
     attributes:
       label: '📅 마감일'
       description: '마감일을 입력해주세요 (YY.MM.DD)'
-      placeholder: ''
     validations:
       required: false

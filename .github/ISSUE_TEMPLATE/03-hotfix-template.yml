@@ -1,7 +1,7 @@
-name: "Style Template"
-description: 코드 포멧팅 이슈 템플릿
-labels: [ style ]
-title: '[Style] '
+name: "Hotfix Template"
+description: 핫픽스 이슈 템플릿
+labels: [ hotfix ]
+title: '[Hotfix] '
 body:
   - type: input
     id: parentKey
@@ -27,6 +27,5 @@ body:
     attributes:
       label: '📅 마감일'
       description: '마감일을 입력해주세요 (YY.MM.DD)'
-      placeholder: ''
     validations:
       required: false

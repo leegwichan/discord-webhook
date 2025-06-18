@@ -1,7 +1,7 @@
-name: "Pref Template"
-description: 성능 개선 이슈 템플릿
-labels: [ pref ]
-title: '[Rref] '
+name: "Test Template"
+description: 테스트 이슈 템플릿
+labels: [ test ]
+title: '[Test] '
 body:
   - type: input
     id: parentKey
@@ -27,6 +27,5 @@ body:
     attributes:
       label: '📅 마감일'
       description: '마감일을 입력해주세요 (YY.MM.DD)'
-      placeholder: ''
     validations:
       required: false

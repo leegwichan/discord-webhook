@@ -1,7 +1,7 @@
-name: "Test Template"
-description: 테스트 이슈 템플릿
-labels: [ test ]
-title: '[Test] '
+name: "Docs Template"
+description: 문서화 이슈 템플릿
+labels: [ docs ]
+title: '[Docs] '
 body:
   - type: input
     id: parentKey
@@ -27,6 +27,5 @@ body:
     attributes:
       label: '📅 마감일'
       description: '마감일을 입력해주세요 (YY.MM.DD)'
-      placeholder: ''
     validations:
       required: false
